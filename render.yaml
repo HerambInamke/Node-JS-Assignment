@@ -34,5 +34,6 @@ services:
 
 databases:
   - name: mern-mysql
-    type: mysql
-    ipAllowList: [] 
+    type: database
+    databaseType: mysql
+    ipAllowList: []
