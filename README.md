@@ -54,8 +54,8 @@ I usually run both backend and frontend together while developing:
 npm run dev
 ```
 
-- Backend: http://localhost:5000
-- Frontend: http://localhost:3000
+- Backend: (not deployed )
+- Frontend: https://node-js-assignment-fawn.vercel.app/
 
 ### Production Mode
 
@@ -185,11 +185,3 @@ You can easily switch between environments by just setting a new `baseUrl` varia
 - **Bootstrap** — To make it look good without much hassle
 - **Axios** — Handling API calls smoothly
 - **React Router** — For navigation across pages
-
-## License
-
-I’m releasing this project under the ISC License — feel free to use it, modify it, or improve it!
-
----
-
-Thanks a ton for checking this out! Hope it helps you as much as it helped me grow while building it. If you run into any issues or have suggestions, feel free to reach out. 🚀
