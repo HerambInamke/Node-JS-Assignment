@@ -29,21 +29,17 @@ app.get('/', (req, res) => {
 // Set port
 const PORT = process.env.PORT || 5000;
 
-// Initialize database and start server
-const startServer = async () => {
-  try {
-    // Initialize database and create tables if they don't exist
-    await initDatabase();
-    console.log('Database initialized successfully');
-    
-    // Start the server
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+// Start server without requiring database to be connected first
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  
+  // Initialize database after server is started
+  initDatabase()
+    .then(() => {
+      console.log('Database initialized successfully');
+    })
+    .catch(error => {
+      console.error('Failed to initialize database:', error);
+      // Don't exit process, let the server continue running
     });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
-
-startServer(); 
+}); 
