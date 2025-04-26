@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "d9b0a9b9-1a7c-4b2e-8b0a-9b91a7c4b2e8",
+		"name": "School Management API",
+		"description": "Collection for testing the School Management API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Example School\",\n    \"address\": \"123 Example St, Example City\",\n    \"latitude\": 37.7749,\n    \"longitude\": -122.4194\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/addSchool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"addSchool"
+					]
+				},
+				"description": "Adds a new school to the database. Requires name, address, latitude, and longitude."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Example School\",\n    \"address\": \"123 Example St, Example City\",\n    \"latitude\": 37.7749,\n    \"longitude\": -122.4194\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/addSchool",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"addSchool"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"School added successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example School\",\n        \"address\": \"123 Example St, Example City\",\n        \"latitude\": 37.7749,\n        \"longitude\": -122.4194\n    }\n}"
+				},
+				{
+					"name": "Error Response - Missing Fields",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Example School\",\n    \"address\": \"123 Example St, Example City\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/addSchool",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"addSchool"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"All fields are required: name, address, latitude, longitude\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List Schools",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/listSchools?latitude=37.7749&longitude=-122.4194",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "37.7749"
+						},
+						{
+							"key": "longitude",
+							"value": "-122.4194"
+						}
+					]
+				},
+				"description": "Lists all schools sorted by proximity to the specified latitude and longitude coordinates."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/listSchools?latitude=37.7749&longitude=-122.4194",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"listSchools"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "37.7749"
+								},
+								{
+									"key": "longitude",
+									"value": "-122.4194"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"count\": 2,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Example School\",\n            \"address\": \"123 Example St, Example City\",\n            \"latitude\": 37.7749,\n            \"longitude\": -122.4194,\n            \"created_at\": \"2023-07-22T12:34:56.000Z\",\n            \"distance\": 0\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Another School\",\n            \"address\": \"456 Other St, Other City\",\n            \"latitude\": 37.8049,\n            \"longitude\": -122.4394,\n            \"created_at\": \"2023-07-22T13:45:12.000Z\",\n            \"distance\": 3.764\n        }\n    ]\n}"
+				},
+				{
+					"name": "Error Response - Missing Parameters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/listSchools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"listSchools"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Both latitude and longitude are required\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+} 
