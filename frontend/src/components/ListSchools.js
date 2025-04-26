@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+// Base API URL - changes based on environment
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ListSchools = () => {
   const [userLocation, setUserLocation] = useState({
     latitude: '',
@@ -52,7 +55,7 @@ const ListSchools = () => {
     
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/listSchools?latitude=${lat}&longitude=${lon}`
+        `${API_BASE_URL}/api/listSchools?latitude=${lat}&longitude=${lon}`
       );
       
       if (res.data.success) {
