@@ -23,17 +23,16 @@ services:
         value: production
       - key: PORT
         value: 5000
-      - key: MYSQL_HOST
+      - key: DB_HOST
         value: ${mern-mysql.HOSTNAME}
-      - key: MYSQL_USER
+      - key: DB_USER
         value: ${mern-mysql.USERNAME}
-      - key: MYSQL_PASSWORD
+      - key: DB_PASSWORD
         value: ${mern-mysql.PASSWORD}
-      - key: MYSQL_DATABASE
+      - key: DB_NAME
         value: school_management
 
 databases:
   - name: mern-mysql
-    type: database
-    databaseType: mysql
+    type: mysql
     ipAllowList: []
